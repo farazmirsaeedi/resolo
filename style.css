@@ -57,5 +57,7 @@ body{
         width: 80%;
         height: auto;
     }
-
+.title{
+    font-size: 1.85rem;
+}
 }
