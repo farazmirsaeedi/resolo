@@ -1,6 +1,6 @@
-import './App.css'
+import "./App.css";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [size, setSize] = useState({
@@ -25,29 +25,44 @@ function App() {
       });
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+  function getApproximateInches(width, height) {
+    const diagonalPixels = Math.sqrt(width ** 2 + height ** 2);
+    return (diagonalPixels / 110).toFixed(1);
+  }
+
+  const screenInches = getApproximateInches(
+    screenSize.width,
+    screenSize.height
+  );
 
   return (
     <>
-      <div class="main">
-        <h1 class="title"> : اندازه پنجره مرورگر شما</h1>
-        <h1 class="wid">عرض: {size.width}</h1>
-        <h1 class="hait">ارتفاع: {size.height}</h1>
-        <h1 class="total">{size.width} x {size.height}</h1>
+      <div className="main">
+        <h1 className="title"> : اندازه پنجره مرورگر شما</h1>
+        <h1 className="wid">عرض: {size.width}</h1>
+        <h1 className="hait">ارتفاع: {size.height}</h1>
+        <h1 className="total">
+          {size.width} x {size.height}
+        </h1>
       </div>
-      <div class="main">
-        <h1 class="title"> : اندازه صفحه نمایش دستگاه شما</h1>
-        <h1 class="wid2">عرض : {screenSize.width}</h1>
-        <h1 class="hait2">طول : {screenSize.height}</h1>
-        <h1 class="total2">{screenSize.width} x {screenSize.height}</h1>
+      <div className="main">
+        <h1 className="title"> : اندازه صفحه نمایش دستگاه شما</h1>
+        <h1 className="wid2">عرض : {screenSize.width}</h1>
+        <h1 className="hait2">طول : {screenSize.height}</h1>
+        <h1 className="total2">
+          {screenSize.width} x {screenSize.height}
+        </h1>
+      </div>
+      <div className="main">
+        <h1 className="title"> : اینچ تقریبی صفحه نمایش شما </h1>
+        <h1>{screenInches}</h1>
       </div>
     </>
   );
 }
 
-
-export default App
+export default App;
